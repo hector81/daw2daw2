@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario modificacion</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript">
+            var tabla = localStorage.getItem("tabla");
+            var base = localStorage.getItem("baseDATOS");
+            window.onload = function mostarTabla() {
+                document.getElementById("tablaSelect").innerHTML = tabla ;
+                document.getElementById("baseSelect").innerHTML = base ;
+            }
+
+            function seleccionarConsulta(envio) {
+                //COGEMOS EL DIV DONDE PONDREMOS LOS DATOS
+                var consultaHTML = document.getElementById('formularioModificacion');
+
+                if (envio === "INSERT") { //agregar
+                    consultaHTML.innerHTML =
+                            "<p><input type='hidden' name='envio' value='INSERT'></p>" +
+                            "<p><input type='hidden' name='table' value='" + tabla + "'></p>"+
+                            "<p><input type='hidden' name='base' value='" + base + "'></p>";
+                } else if (envio === "ADD") {//editar
+                    consultaHTML.innerHTML =
+                            "<p><input type='hidden' name='envio' value='ADD'></p>" +
+                            "<p><input type='hidden' name='table' value='" + tabla + "'></p>"+
+                            "<p><input type='hidden' name='base' value='" + base + "'></p>";
+                } else if (envio === "DROP") {//eliminar
+                    consultaHTML.innerHTML =
+                            "<p><input type='hidden' name='envio' value='DROP'></p>" +
+                            "<p><input type='hidden' name='table' value='" + tabla + "'></p>"
+                            "<p><input type='hidden' name='base' value='" + base + "'></p>";
+                } else if (envio === "SELECT") {//mostrar
+                    consultaHTML.innerHTML =
+                            "<p>ID: <input type='number' name='id'></p>" +
+                            "<p><input type='hidden' name='envio' value='SELECT'></p>" +
+                            "<p><input type='hidden' name='table' value='" + tabla + "'></p>"+
+                            "<p><input type='hidden' name='base' value='" + base + "'></p>";
+                    ;
+                } else if (envio === "SELECT_ALL") {//estructura
+                    consultaHTML.innerHTML = "<p><input type='hidden' name='envio' value='SELECT_ALL'></p>" +
+                            "<p><input type='hidden' name='table' value='" + tabla + "'></p>"
+                    +"<p><input type='hidden' name='base' value='" + base + "'></p>";
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <form method="post" id="formu" action="./ServletModificacionesTabla1">
+            <table>
+                <tr>
+                    <td>Introduce tu usuario</td>
+                    <td><input type="text" value="root" name="nombreUsuario" size="25"></td>
+                </tr>
+                <tr>
+                    <td>Introduce tu contraseña</td>
+                    <td><input type="password" name="password" size="10" maxlength="9"></td>
+                </tr>
+                <tr>
+                    <td>Tabla elegida</td>
+                    <td><div id="tablaSelect"></div></td>
+                </tr>
+                <tr>
+                    <td>Base elegida</td>
+                    <td><div id="baseSelect"></div></td>
+                </tr>
+                <tr>
+                    <td>     
+                        <h1>Introduce acción</h1>
+                    </td>
+                    <td>
+                        <select onchange="seleccionarConsulta(this.value)">
+                            <option value="">--Elije una opción--</option>
+                            <option value="INSERT">Agregar</option>
+                            <option value="ADD">Editar</option>
+                            <option value="DROP">Eliminar</option>
+                            <option value="SELECT">Mostrar Fila</option>
+                            <option value="SELECT_ALL">Mostrar Estructura</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div id="formularioModificacion"></div>
+                    </td>    
+                </tr>
+            </table>
+            <input type="submit" formaction="./index.jsp" value="Inicio">
+            <input type="reset" value="Borrar">
+            <input type="submit" value="Enviar">
+        </form>
+
+    </body>
+</html>

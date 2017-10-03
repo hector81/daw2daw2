@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario tabla</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+      <form method="post" action="./ServletConsultaSelectPersonalizada">
+        <table>
+            <tr>
+                <td>Introduce tu usuario</td>
+                <td><input type="text" name="nombre" size="25"></td>
+            </tr>
+            <tr>
+                <td>Introduce tu contraseña</td>
+                <td><input type="password" name="password" size="10" maxlength="9"></td>
+            </tr>
+            <tr>
+                <textarea name="consultaPersonalizada"></textarea>
+            </tr>
+        </table><br>
+
+        <input type="submit" value="Enviar Consulta">
+        <input type="reset" value="Borrar">
+      </form>   
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Formulario operaciones base datos</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript">
+            var baseDatosElegida = localStorage.getItem("baseDatos");
+
+            window.onload = function mostrarBaseDatos() {
+                document.getElementById("baseDatosElegidaSelect").innerHTML = baseDatosElegida;
+            }
+
+            function seleccionarConsulta(envio) {
+                //COGEMOS EL DIV DONDE PONDREMOS LOS DATOS
+                var consultaHTML = document.getElementById('formularioOperaciones');
+
+                if (envio === "IMPORT") { //agregar
+                    consultaHTML.innerHTML =
+                            "<p><input type='hidden' name='envio' value='IMPORT'></p>" +
+                            "<p><input type='hidden' name='BASE' value='" + baseDatosElegida + "'></p>";
+                } else if (envio === "EXPORT") {//editar
+                    consultaHTML.innerHTML =
+                            "<p><input type='hidden' name='envio' value='EXPORT'></p>" +
+                            "<p><input type='hidden' name='BASE' value='" + baseDatosElegida + "'></p>";
+                } 
+            }
+
+        </script>
+    </head>
+    <body>
+        <form method="post" id="formu" action="./ServletOperacionesBD">
+            <table>
+                <tr>
+                    <td>Introduce tu usuario</td>
+                    <td><input type="text" value="root" name="nombreUsuario" size="25"></td>
+                </tr>
+                <tr>
+                    <td>Introduce tu contraseña</td>
+                    <td><input type="password" name="password" size="10" maxlength="9"></td>
+                </tr>
+                <tr>
+                    <td>Base datos elegida</td>
+                    <td><div id="baseDatosElegidaSelect"></div></td>
+                </tr>
+                <tr>
+                    <td>     
+                        <h1>Introduce acción</h1>
+                    </td>
+                    <td>
+                        <select onchange="seleccionarConsulta(this.value)">
+                            <option value="">--Elije una opción--</option>
+                            <option value="IMPORT">Importar</option>
+                            <option value="EXPORT">Exportar</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div id="formularioOperaciones"></div>
+                    </td>    
+                </tr>
+            </table>
+            <input type="submit" formaction="./elegirBaseDatosExportar.jsp" value="Volver a elegir base datos">
+            <input type="submit" formaction="./index.jsp" value="Inicio">
+            <input type="reset" value="Borrar">
+            <input type="submit" value="Enviar">
+        </form>
+
+    </body>
+</html>

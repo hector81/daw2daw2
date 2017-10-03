@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form method="post" action="./ServletInformacionModificacion">
+        <table>
+            <tr>
+                <td>Introduce tu usuario</td>
+                <td><input type="text" name="nombre" size="25"></td>
+            </tr>
+            <tr>
+                <td>Introduce tu contraseña</td>
+                <td><input type="password" name="password" size="10" maxlength="9"></td>
+            </tr>
+            <br>
+            <tr>
+                CAJA ALTERAR COLUMNA<br>
+                <textarea name="consultaModificacionALTER"></textarea><br><br>
+                CAJA CREATE<br>
+                <textarea name="consultaModificacionCREATE"></textarea><br><br>
+                CAJA INSERT<br>
+                <textarea name="consultaModificacionINSERT"></textarea><br><br>
+            </tr>
+        </table><br>
+
+        <input type="submit" value="Enviar Consulta">
+        <input type="reset" value="Borrar">
+      </form> 
+    </body>
+</html>
